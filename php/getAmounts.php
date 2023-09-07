@@ -1,0 +1,30 @@
+<?php
+session_start();
+include_once("config.php");
+if (isset($_GET['getAmounts'])) {
+    $checkCart = mysqli_query($con, "SELECT * FROM cart");
+    if(mysqli_num_rows($checkCart) > 0){
+        $select = mysqli_query($con, "SELECT * FROM cart WHERE userId = '{$_SESSION['uid']}'");
+        $totalQuantity = 0;
+        $totalAmount = 0;
+        while($data = mysqli_fetch_array($select)){
+            $quantity = $data['quantity'];
+            $subTotal = $data['subtotal'];
+            $totalQuantity = $totalQuantity + $quantity;
+            $totalAmount = $totalAmount + $subTotal;
+        }
+        echo '
+            <li>
+                <h4>Total Quantity</h4>
+                <h5 class="totalQuantity">'.$totalQuantity.'</h5>
+            </li>
+            <li class="total">
+                <h4>Grand Total [GHS.]</h4>
+                <h5 class="totalAmount">Ghs '.$totalAmount.'</h5>
+            </li>
+        ';
+    }else{
+        echo '';
+    }
+
+}
