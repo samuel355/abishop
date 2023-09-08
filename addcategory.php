@@ -1,31 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
-    <meta name="description" content="POS - Bootstrap Admin Template">
-    <meta name="keywords"
-        content="admin, estimates, bootstrap, business, corporate, creative, invoice, html5, responsive, Projects">
-    <meta name="author" content="Dreamguys - Bootstrap Admin Template">
-    <meta name="robots" content="noindex, nofollow">
-    <title>Dreams Pos admin template</title>
-
-    <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.png">
-
-    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
-
-    <link rel="stylesheet" href="assets/css/animate.css">
-
-    <link rel="stylesheet" href="assets/plugins/select2/css/select2.min.css">
-
-    <link rel="stylesheet" href="assets/css/dataTables.bootstrap4.min.css">
-
-    <link rel="stylesheet" href="assets/plugins/fontawesome/css/fontawesome.min.css">
-    <link rel="stylesheet" href="assets/plugins/fontawesome/css/all.min.css">
-
-    <link rel="stylesheet" href="assets/css/style.css">
-</head>
+<?php
+include_once('includes/redirect.php');
+include_once('includes/head.php');
+?>
 
 <body>
     <div id="global-loader">
@@ -80,8 +56,7 @@
 
 
                 <li class="nav-item dropdown has-arrow flag-nav nav-item-box">
-                    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="javascript:void(0);"
-                        role="button">
+                    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="javascript:void(0);" role="button">
                         <i data-feather="globe"></i>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right">
@@ -163,9 +138,7 @@
                                             </span>
                                             <div class="media-body flex-grow-1">
                                                 <p class="noti-details"><span class="noti-title">Misty Tison</span>
-                                                    added <span class="noti-title">Domenic Houston</span> and <span
-                                                        class="noti-title">Claire Mapes</span> to project <span
-                                                        class="noti-title">Doctor available module</span></p>
+                                                    added <span class="noti-title">Domenic Houston</span> and <span class="noti-title">Claire Mapes</span> to project <span class="noti-title">Doctor available module</span></p>
                                                 <p class="noti-time"><span class="notification-time">8 mins ago</span>
                                                 </p>
                                             </div>
@@ -240,11 +213,9 @@
                             <hr class="m-0">
                             <a class="dropdown-item" href="profile.html"> <i class="me-2" data-feather="user"></i> My
                                 Profile</a>
-                            <a class="dropdown-item" href="generalsettings.html"><i class="me-2"
-                                    data-feather="settings"></i>Settings</a>
+                            <a class="dropdown-item" href="generalsettings.html"><i class="me-2" data-feather="settings"></i>Settings</a>
                             <hr class="m-0">
-                            <a class="dropdown-item logout pb-0" href="signin.html"><img
-                                    src="assets/img/icons/log-out.svg" class="me-2" alt="img">Logout</a>
+                            <a class="dropdown-item logout pb-0" href="signin.html"><img src="assets/img/icons/log-out.svg" class="me-2" alt="img">Logout</a>
                         </div>
                     </div>
                 </li>
@@ -252,8 +223,7 @@
 
 
             <div class="dropdown mobile-user-menu">
-                <a href="javascript:void(0);" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"
-                    aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
+                <a href="javascript:void(0);" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
                 <div class="dropdown-menu dropdown-menu-right">
                     <a class="dropdown-item" href="profile.html">My Profile</a>
                     <a class="dropdown-item" href="generalsettings.html">Settings</a>
@@ -275,9 +245,7 @@
                                     <a href="index.html"><i data-feather="grid"></i><span>Dashboard</span></a>
                                 </li>
                                 <li class="submenu">
-                                    <a href="javascript:void(0);"><i
-                                            data-feather="smartphone"></i><span>Application</span><span
-                                            class="menu-arrow"></span></a>
+                                    <a href="javascript:void(0);"><i data-feather="smartphone"></i><span>Application</span><span class="menu-arrow"></span></a>
                                     <ul>
                                         <li><a href="chat.html">Chat</a></li>
                                         <li><a href="calendar.html">Calendar</a></li>
@@ -292,8 +260,7 @@
                                 <li><a href="productlist.html"><i data-feather="box"></i><span>Products</span></a></li>
                                 <li><a href="addproduct.html"><i data-feather="plus-square"></i><span>Create
                                             Product</span></a></li>
-                                <li class="active"><a href="categorylist.html"><i
-                                            data-feather="codepen"></i><span>Category</span></a></li>
+                                <li class="active"><a href="categorylist.html"><i data-feather="codepen"></i><span>Category</span></a></li>
                                 <li><a href="brandlist.html"><i data-feather="tag"></i><span>Brands</span></a></li>
                                 <li><a href="subcategorylist.html"><i data-feather="speaker"></i><span>Sub
                                             Category</span></a></li>
@@ -308,26 +275,21 @@
                             <ul>
                                 <li><a href="saleslist.html"><i data-feather="shopping-cart"></i><span>Sales</span></a>
                                 </li>
-                                <li><a href="invoicereport.html"><i
-                                            data-feather="file-text"></i><span>Invoices</span></a></li>
+                                <li><a href="invoicereport.html"><i data-feather="file-text"></i><span>Invoices</span></a></li>
                                 <li><a href="salesreturnlists.html"><i data-feather="copy"></i><span>Sales
                                             Return</span></a></li>
                                 <li><a href="quotationList.html"><i data-feather="save"></i><span>Quotation</span></a>
                                 </li>
                                 <li><a href="pos.html"><i data-feather="hard-drive"></i><span>POS</a></li>
                                 <li class="submenu">
-                                    <a href="javascript:void(0);"><i
-                                            data-feather="shuffle"></i><span>Transfer</span><span
-                                            class="menu-arrow"></span></a>
+                                    <a href="javascript:void(0);"><i data-feather="shuffle"></i><span>Transfer</span><span class="menu-arrow"></span></a>
                                     <ul>
                                         <li><a href="transferlist.html">Transfer List</a></li>
                                         <li><a href="importtransfer.html">Import Transfer </a></li>
                                     </ul>
                                 </li>
                                 <li class="submenu">
-                                    <a href="javascript:void(0);"><i
-                                            data-feather="corner-up-left"></i><span>Return</span><span
-                                            class="menu-arrow"></span></a>
+                                    <a href="javascript:void(0);"><i data-feather="corner-up-left"></i><span>Return</span><span class="menu-arrow"></span></a>
                                     <ul>
                                         <li><a href="salesreturnlist.html">Sales Return</a></li>
                                         <li><a href="purchasereturnlist.html">Purchase Return</a></li>
@@ -338,8 +300,7 @@
                         <li class="submenu-open">
                             <h6 class="submenu-hdr">Purchases</h6>
                             <ul>
-                                <li><a href="purchaselist.html"><i
-                                            data-feather="shopping-bag"></i><span>Purchases</span></a></li>
+                                <li><a href="purchaselist.html"><i data-feather="shopping-bag"></i><span>Purchases</span></a></li>
                                 <li><a href="importpurchase.html"><i data-feather="minimize-2"></i><span>Import
                                             Purchases</span></a></li>
                                 <li><a href="purchaseorderreport.html"><i data-feather="file-minus"></i><span>Purchase
@@ -352,9 +313,7 @@
                             <h6 class="submenu-hdr">Finance & Accounts</h6>
                             <ul>
                                 <li class="submenu">
-                                    <a href="javascript:void(0);"><i
-                                            data-feather="file-text"></i><span>Expense</span><span
-                                            class="menu-arrow"></span></a>
+                                    <a href="javascript:void(0);"><i data-feather="file-text"></i><span>Expense</span><span class="menu-arrow"></span></a>
                                     <ul>
                                         <li><a href="expenselist.html">Expenses</a></li>
                                         <li><a href="expensecategory.html">Expense Category</a></li>
@@ -409,9 +368,7 @@
                             <h6 class="submenu-hdr">Pages</h6>
                             <ul>
                                 <li class="submenu">
-                                    <a href="javascript:void(0);"><i
-                                            data-feather="shield"></i><span>Authentication</span><span
-                                            class="menu-arrow"></span></a>
+                                    <a href="javascript:void(0);"><i data-feather="shield"></i><span>Authentication</span><span class="menu-arrow"></span></a>
                                     <ul>
                                         <li><a href="signin.html">Log in</a></li>
                                         <li><a href="signup.html">Register</a></li>
@@ -428,8 +385,7 @@
                                     </ul>
                                 </li>
                                 <li class="submenu">
-                                    <a href="javascript:void(0);"><i data-feather="map"></i><span>Places</span><span
-                                            class="menu-arrow"></span></a>
+                                    <a href="javascript:void(0);"><i data-feather="map"></i><span>Places</span><span class="menu-arrow"></span></a>
                                     <ul>
                                         <li><a href="countrieslist.html">Countries</a></li>
                                         <li><a href="statelist.html">States</a></li>
@@ -448,9 +404,7 @@
                             <h6 class="submenu-hdr">UI Interface</h6>
                             <ul>
                                 <li class="submenu">
-                                    <a href="javascript:void(0);"><i
-                                            data-feather="layers"></i><span>Elements</span><span
-                                            class="menu-arrow"></span></a>
+                                    <a href="javascript:void(0);"><i data-feather="layers"></i><span>Elements</span><span class="menu-arrow"></span></a>
                                     <ul>
                                         <li><a href="sweetalerts.html">Sweet Alerts</a></li>
                                         <li><a href="tooltip.html">Tooltip</a></li>
@@ -473,9 +427,7 @@
                                     </ul>
                                 </li>
                                 <li class="submenu">
-                                    <a href="javascript:void(0);"><i
-                                            data-feather="bar-chart-2"></i><span>Charts</span><span
-                                            class="menu-arrow"></span></a>
+                                    <a href="javascript:void(0);"><i data-feather="bar-chart-2"></i><span>Charts</span><span class="menu-arrow"></span></a>
                                     <ul>
                                         <li><a href="chart-apex.html">Apex Charts</a></li>
                                         <li><a href="chart-js.html">Chart Js</a></li>
@@ -485,8 +437,7 @@
                                     </ul>
                                 </li>
                                 <li class="submenu">
-                                    <a href="javascript:void(0);"><i data-feather="database"></i><span>Icons</span><span
-                                            class="menu-arrow"></span></a>
+                                    <a href="javascript:void(0);"><i data-feather="database"></i><span>Icons</span><span class="menu-arrow"></span></a>
                                     <ul>
                                         <li><a href="icon-fontawesome.html">Fontawesome Icons</a></li>
                                         <li><a href="icon-feather.html">Feather Icons</a></li>
@@ -501,8 +452,7 @@
                                     </ul>
                                 </li>
                                 <li class="submenu">
-                                    <a href="javascript:void(0);"><i data-feather="edit"></i><span>Forms</span><span
-                                            class="menu-arrow"></span></a>
+                                    <a href="javascript:void(0);"><i data-feather="edit"></i><span>Forms</span><span class="menu-arrow"></span></a>
                                     <ul>
                                         <li><a href="form-basic-inputs.html">Basic Inputs </a></li>
                                         <li><a href="form-input-groups.html">Input Groups </a></li>
@@ -515,8 +465,7 @@
                                     </ul>
                                 </li>
                                 <li class="submenu">
-                                    <a href="javascript:void(0);"><i data-feather="columns"></i><span>Tables</span><span
-                                            class="menu-arrow"></span></a>
+                                    <a href="javascript:void(0);"><i data-feather="columns"></i><span>Tables</span><span class="menu-arrow"></span></a>
                                     <ul>
                                         <li><a href="tables-basic.html">Basic Tables </a></li>
                                         <li><a href="data-tables.html">Data Table </a></li>
@@ -528,9 +477,7 @@
                             <h6 class="submenu-hdr">Settings</h6>
                             <ul>
                                 <li class="submenu">
-                                    <a href="javascript:void(0);"><i
-                                            data-feather="settings"></i><span>Settings</span><span
-                                            class="menu-arrow"></span></a>
+                                    <a href="javascript:void(0);"><i data-feather="settings"></i><span>Settings</span><span class="menu-arrow"></span></a>
                                     <ul>
                                         <li><a href="generalsettings.html">General Settings</a></li>
                                         <li><a href="emailsettings.html">Email Settings</a></li>

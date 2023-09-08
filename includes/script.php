@@ -33,6 +33,7 @@
     <script src="js/editProduct.js"></script>
     <script src="js/deleteProduct.js"></script>
     <script src="js/addsale.js"></script>
+    <script src="js/customer.js"></script>
 
     </body>
 
