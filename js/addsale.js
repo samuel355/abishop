@@ -8,6 +8,7 @@ $(function () {
   getCartItem();
   net_total();
   getSaleCustomers();
+  paymentOptions();
 
   function net_total() {
     $.ajax({
@@ -31,8 +32,8 @@ $(function () {
       },
 
       success: function (data) {
-        $('.saleCustomers').html(data);
-      }
+        $(".saleCustomers").html(data);
+      },
     });
   }
 
@@ -172,7 +173,7 @@ $(function () {
         url: "../php/displaySaleCustomer.php",
         success: function (response) {
           //getSaleCustomers();
-  
+
           $(".saleCustomerInfo").html(response);
         },
       });
@@ -287,74 +288,146 @@ $(function () {
     }
   });
 
+  //Hide Payment Options when page load
+  function paymentOptions() {
+    var paymentOption = $("#paymentOptions").val();
+    if (paymentOption === "Choose Payment Option") {
+      $(".readyCash").css("display", "none");
+      $(".forCredit").css("display", "none");
+      $(".installments").css("display", "none");
+    }
+  }
+
+  //Choose Payment Options
+  $("#paymentOptions").on("change", function (e) {
+    var totalAmount = $("#totalAmount").val();
+    var paymentOption = $(this).val();
+    if (paymentOption === "Choose Payment Option") {
+      $(".readyCash").css("display", "none");
+      $(".forCredit").css("display", "none");
+      $(".installments").css("display", "none");
+      $(".paymentOptionError").text("Choose payment Option");
+      return toastr.error("Choose Payment Option", "Error", {
+        closeButton: !0,
+        tapToDismiss: !1,
+        rtl: o,
+      });
+    } else if (paymentOption === "Ready Cash") {
+      console.log(totalAmount);
+      $(".paymentOptionError").text("");
+      $(".readyCash").css("display", "block");
+      $(".forCredit").css("display", "none");
+      $(".installments").css("display", "none");
+    } else if (paymentOption === "For Credit") {
+      console.log(totalAmount);
+      $(".paymentOptionError").text("");
+      $(".forCredit").css("display", "block");
+      $(".readyCash").css("display", "none");
+      $(".installments").css("display", "none");
+    } else if (paymentOption === "Installments") {
+      console.log(totalAmount);
+      $(".paymentOptionError").text("");
+      $(".installments").css("display", "block");
+      $(".readyCash").css("display", "none");
+      $(".forCredit").css("display", "none");
+    }
+  });
+
+  //Ready Cash
+  $("#amountPaidRC").on("keyup", function () {
+    var totalAmount = $("#totalAmount").val();
+    var amountPaid = $("#amountPaidRC").val();
+    var amountRemaining = totalAmount - amountPaid;
+    $("#amountRemainingRC").val(amountRemaining.toLocaleString());
+
+    if (amountRemaining < 0) {
+      $(".amountRemainingRCError").text("Check the amount remaining");
+    } else {
+      $(".amountRemainingRCError").text("");
+    }
+  });
+
+  //Installments
+  $("#amountPaidI").on("keyup", function () {
+    var totalAmount = $("#totalAmount").val().toLocaleString();
+    var amountPaid = $("#amountPaidI").val();
+    var amountRemaining = totalAmount - amountPaid;
+    $("#amountRemainingI").val(amountRemaining.toLocaleString());
+
+    if (amountRemaining < 0) {
+      $(".amountRemainingIError").text("Check the amount remaining");
+    } else {
+      $(".amountRemainingIError").text("");
+    }
+  });
+
   //Add Category Start
   $(".addSaleForm").on("submit", function (e) {
     e.preventDefault();
 
-    var productName = $("#productName").val(),
-      categoryId = $("#categoryId").val(),
-      quantity = $("#quantity").val(),
-      price = $("#price").val(),
-      description = $("#description").val(),
-      numbers = /^[0-9]+$/;
-    
-    var data = $(".addSaleForm").serialize();
+    //Customer Details
+    var customerId = $("#customerId").val(),
+      customerEmail = $("#email").val(),
+      customerAddress = $("#address").val(),
+      customerPhone = $("#phone").val(),
+      totalAmount = $("#totalAmount").val(),
+      paymentOptions = $("#paymentOptions").val();
+
+    var amountPaid;
+    var amountRemaining;
+    var shortNote;
+    var paymentDate;
+    var nextPaymentDate;
+
+    //Ready Cash
+    var amountPaidRC = $("#amountPaidRC").val(),
+      amountRemainingRC = $("#amountRemainingRC").val(),
+      shortNoteRC = $("#shortNoteRC").val();
+      
+    //For Credit
+    var paymentDateFC = $("#paymentDate").val(),
+      shortNoteFC = $("#shortNoteFC");
+
+    //Installments
+    var initialPayment = $("#amountPaidI").val(),
+      amountRemainingI = $("#amountRemainingI").val(),
+      nextPaymentDateI= $("#nextPaymentDateI").val(),
+      shortNoteI = $("#shortNoteI").val();
+
+    if (paymentOptions === "Ready Cash") {
+      amountPaid = amountPaidRC;
+      amountRemaining = amountRemainingRC;
+      shortNote = shortNoteRC;
+      paymentDate = 'today date';
+      nextPaymentDate = '';
+    } else if (paymentOptions === "For Credit") {
+      amountPaid = 0
+      amountRemaining = totalAmount;
+      shortNote = shortNoteFC;
+      paymentDate = paymentDateFC;
+      nextPaymentDate = '';
+    }else if(paymentOptions === "Installments"){
+      amountPaid = initialPayment;
+      amountRemaining = amountRemainingI;
+      nextPaymentDate = nextPaymentDateI;
+      shortNote = shortNoteI;
+      paymentDate = 'today date'
+    }
+
+    var data = {
+      customerId,
+      customerEmail,
+      customerAddress,
+      customerPhone,
+      totalAmount,
+      paymentOptions,
+      amountPaid,
+      amountRemaining,
+      shortNote,
+      paymentDate,
+      nextPaymentDate
+    };
     console.log(data);
-
-    //Product Name
-    // if (productName === "") {
-    //   $(".productNameError").text("Enter Product Name");
-    //   return toastr.error("Enter Product Name", "Error", {
-    //     closeButton: !0,
-    //     tapToDismiss: !1,
-    //     rtl: o,
-    //   });
-    // } else if (productName.length <= 3) {
-    //   $(".productNameError").text("Product name is too short");
-    //   return toastr.error("Product name is short", "Error", {
-    //     closeButton: !0,
-    //     tapToDismiss: !1,
-    //     rtl: o,
-    //   });
-    // } else {
-    //   $(".productNameError").text("");
-    // }
-
-    // //Category Name /id
-    // if (categoryId === "Choose Category") {
-    //   $(".categoryError").text("Choose product category");
-    //   return toastr.error("Choose product Category", "Error", {
-    //     closeButton: !0,
-    //     tapToDismiss: !1,
-    //     rtl: o,
-    //   });
-    // } else {
-    //   $(".categoryError").text("");
-    // }
-
-    // //quantity
-    // if (quantity === "") {
-    //   $(".quantityError").text("Add product total quantity");
-    //   return toastr.error("add product total quantity", "Error", {
-    //     closeButton: !0,
-    //     tapToDismiss: !1,
-    //     rtl: o,
-    //   });
-    // } else {
-    //   $(".quantityError").text("");
-    // }
-
-    // //price
-    // if (price === "") {
-    //   $(".priceError").text("Add product unit price");
-    //   return toastr.error("add product unit price", "Error", {
-    //     closeButton: !0,
-    //     tapToDismiss: !1,
-    //     rtl: o,
-    //   });
-    // } else {
-    //   $(".priceError").text("");
-    // }
 
     // $.ajax({
     //   data: $(".addProductForm").serialize(),

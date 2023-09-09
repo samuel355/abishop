@@ -85,38 +85,101 @@ include_once('includes/head.php');
                             <div class="row">
                                 <div class="col-lg-3 col-sm-6 col-12">
                                     <div class="form-group">
-                                        <label>Order Tax</label>
-                                        <input type="text">
-                                    </div>
-                                </div>
-                                <div class="col-lg-3 col-sm-6 col-12">
-                                    <div class="form-group">
-                                        <label>Discount</label>
-                                        <input type="text">
-                                    </div>
-                                </div>
-                                <div class="col-lg-3 col-sm-6 col-12">
-                                    <div class="form-group">
-                                        <label>Shipping</label>
-                                        <input type="text">
-                                    </div>
-                                </div>
-                                <div class="col-lg-3 col-sm-6 col-12">
-                                    <div class="form-group">
-                                        <label>Status</label>
-                                        <select class="select" name="paymentStatus" id="paymentStatus">
-                                            <option>Choose Status</option>
-                                            <option>Completed</option>
-                                            <option>Inprogress</option>
+                                        <label>Payment Option</label>
+                                        <select class="select" name="paymentOptions" id="paymentOptions">
+                                            <option value="Choose Payment Option">Choose Payment Option</option>
+                                            <option value="Ready Cash">Ready Cash</option>
+                                            <option value="For Credit">For Credit</option>
+                                            <option value="Installments">Installments</option>
                                         </select>
+                                        <span class="text-danger m-1 paymentOptionError"></span>
                                     </div>
                                 </div>
-                                <div class="col-lg-12">
-                                    <div class="form-group">
-                                        <label>Description</label>
-                                        <textarea id="description" name="description" class="form-control"></textarea>
+
+                                <!-- Ready Cash -->
+                                <div class="readyCash">
+                                    <div class="row">
+                                        <div class="col-lg-3 col-sm-6 col-12">
+                                            <div class="form-group amountPaid">
+                                                <label>Amount Paid</label>
+                                                <input type="number" name="amountPaidRC" id="amountPaidRC">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-3 col-sm-6 col-12">
+                                            <div class="form-group">
+                                                <label>Amount Remaining</label>
+                                                <input type="text" disabled name="amountRemainingRC" id="amountRemainingRC">
+                                                <span class="text-danger m-1 amountRemainingRCError"></span>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-3 col-sm-6 col-12">
+                                            <div class="form-group">
+                                                <label>Short Note</label>
+                                                <input type="text" id="shortNoteRC" name="shortNoteRC">
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
+
+                                <!-- For Credit -->
+                                <div class="forCredit">
+                                    <div class="row">
+                                        <div class="col-lg-6 col-sm-6 col-12">
+                                            <div class="form-group">
+                                                <label>Date to make Payment</label>
+                                                <div class="input-groupicon">
+                                                    <input type="text" id="paymentDate" name="paymentDate" placeholder="Choose Date" class="datetimepicker">
+                                                    <a class="addonset">
+                                                        <img src="assets/img/icons/calendars.svg" alt="img">
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 col-sm-6 col-12">
+                                            <div class="form-group">
+                                                <label>Short Note</label>
+                                                <input type="text" id="shortNoteFC" name="shortNoteFC">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Installments -->
+                                <div class="installments">
+                                    <div class="row">
+                                        <div class="col-lg-3 col-sm-6 col-12">
+                                            <div class="form-group amountPaid">
+                                                <label>Initial Payment</label>
+                                                <input type="number" name="amountPaidI" id="amountPaidI">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-3 col-sm-6 col-12">
+                                            <div class="form-group amountPaid">
+                                                <label>Amount Remaining</label>
+                                                <input type="text" disabled name="amountRemainingI" id="amountRemainingI">
+                                                <span class="text-danger m-1 amountRemainingIError"></span>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-3 col-sm-6 col-12">
+                                            <div class="form-group">
+                                                <label>Next Payment Date</label>
+                                                <div class="input-groupicon">
+                                                    <input type="text" id="nextPaymentDateI" name="nextPaymentDateI" placeholder="Choose Date" class="datetimepicker">
+                                                    <a class="addonset">
+                                                        <img src="assets/img/icons/calendars.svg" alt="img">
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12 col-sm-6 col-12">
+                                            <div class="form-group">
+                                                <label>Short Note</label>
+                                                <input type="text" id="shortNoteI" name="shortNoteI">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
                                 <div class="col-lg-12">
                                     <button type="submit" class="btn btn-submit me-2">Add Sale</button>
                                 </div>
