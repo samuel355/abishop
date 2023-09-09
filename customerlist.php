@@ -176,5 +176,4 @@ include_once('includes/head.php');
         </div>
     </div>
 
-
     <?php include_once('includes/script.php') ?>

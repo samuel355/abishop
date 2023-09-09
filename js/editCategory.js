@@ -22,7 +22,6 @@ $(function () {
       });
     } else {
       $(".categoryNameError").text("");
-      console.log($("#categoryId").val());
     }
 
     $.ajax({

@@ -34,7 +34,7 @@ $(document).ready(function () {
 
       success: function (data) {
         if (data === "success") {
-            $('#deleteCustomer').modal('toggle')
+          $("#deleteCustomer").modal("toggle");
           toastr.success(
             "You have deleted a customer successfully",
             "Success",
@@ -45,15 +45,77 @@ $(document).ready(function () {
             }
           );
           getCustomers();
-        }else{
-            return toastr.error(data, "Error", {
+        } else {
+          return toastr.error(data, "Error", {
+            closeButton: !0,
+            tapToDismiss: !1,
+            rtl: o,
+          });
+        }
+      },
+    });
+  });
+
+  //Update Customer
+  $(".editCustomerForm").on("submit", function (e) {
+    e.preventDefault();
+
+    var name = $("#name").val(),
+      phone = $("#phone").val(),
+      email = $("#email").val(),
+      address = $("#address").val();
+
+    //Name
+    if (name === "") {
+      $(".nameError").text("Enter customer name");
+      return toastr.error("Enter customer name", "Error", {
+        closeButton: !0,
+        tapToDismiss: !1,
+        rtl: o,
+      });
+    } else if (name.length < 4) {
+      $(".nameError").text("Name too short");
+    } else {
+      $(".nameError").text("");
+    }
+
+    //Phone
+    if (phone === "") {
+      $(".phoneError").text("Enter customer phone number");
+      return toastr.error("Enter customer phone number", "Error", {
+        closeButton: !0,
+        tapToDismiss: !1,
+        rtl: o,
+      });
+    }else {
+      $(".phoneError").text("");
+
+      $.ajax({
+        data: $(".editCustomerForm").serialize(),
+        method: "POST",
+        url: "../php/updateCustomer.php",
+
+        success: function (response) {
+          console.log(response);
+          if (response == "success") {
+            window.location.href = "/customers"
+            $(".editCustomerForm")[0].reset();
+            alert('You have updated customer successfully')
+            toastr.success("You have updated customer successfully", "Success", {
               closeButton: !0,
               tapToDismiss: !1,
               rtl: o,
             });
-        }
-      },
-    });
+          } else {
+            return toastr.error(response, "Error", {
+              closeButton: !0,
+              tapToDismiss: !1,
+              rtl: o,
+            });
+          }
+        },
+      });
+    }
   });
 
   //Add Customer

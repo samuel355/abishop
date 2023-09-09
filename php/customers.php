@@ -47,8 +47,8 @@ if(isset($_GET['getCustomers'])){
                     <td>'.$email. '</td>
                     <td>' . $dateAdded . '</td>
                     <td>
-                        <a class="me-3">
-                            <img customerId="'.$customerId. '" class="editCustomer" src="assets/img/icons/edit.svg" alt="img">
+                        <a href="edit-customer?customerId='.$customerId.'" class="me-3">
+                            <img src="assets/img/icons/edit.svg" alt="img">
                         </a>
                         <a class="me-3 deleteCustomerLink" href="javascript:void(0);" data-bs-target="#deleteCustomer" data-bs-toggle="modal">
                             <img customerId="' . $customerId . '" class="deleteCustomer" src="assets/img/icons/delete.svg" alt="img">
