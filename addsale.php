@@ -21,54 +21,31 @@ include_once('includes/head.php');
                         <h6>Add/Update Purchase</h6>
                     </div>
                 </div>
-                <form action="">
+                <form action="" class="addSaleForm" method="POST">
                     <div class="card">
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-lg-3 col-sm-6 col-12">
                                     <div class="form-group">
-                                        <label>Supplier Name</label>
+                                        <label>Customer Name</label>
                                         <div class="row">
                                             <div class="col-lg-10 col-sm-10 col-10">
-                                                <select class="select">
-                                                    <option>Select</option>
-                                                    <option>Supplier</option>
+                                                <select class="js-example-basic-single form-small select2 saleCustomers" id="selectSaleCustomer">
+
                                                 </select>
                                             </div>
                                             <div class="col-lg-2 col-sm-2 col-2 ps-0">
                                                 <div class="add-icon">
-                                                    <a href="javascript:void(0);"><img src="assets/img/icons/plus1.svg" alt="img"></a>
+                                                    <a data-bs-target="#addCustomer" data-bs-toggle="modal" href="javascript:void(0);"><img src="assets/img/icons/plus1.svg" alt="img"></a>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-lg-3 col-sm-6 col-12">
-                                    <div class="form-group">
-                                        <label>Purchase Date </label>
-                                        <div class="input-groupicon">
-                                            <input type="text" placeholder="DD-MM-YYYY" class="datetimepicker">
-                                            <div class="addonset">
-                                                <img src="assets/img/icons/calendars.svg" alt="img">
-                                            </div>
-                                        </div>
-                                    </div>
+                                <div class="saleCustomerInfo row">
+
                                 </div>
-                                <div class="col-lg-3 col-sm-6 col-12">
-                                    <div class="form-group">
-                                        <label>Product Name</label>
-                                        <select class="select">
-                                            <option>Choose</option>
-                                            <option>Supplier Name</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-lg-3 col-sm-6 col-12">
-                                    <div class="form-group">
-                                        <label>Reference No.</label>
-                                        <input type="text">
-                                    </div>
-                                </div>
+                                <br>
                                 <div class="col-lg-6 col-sm-6 col-6">
                                     <div class="form-group">
                                         <label>Product Name</label>
@@ -82,8 +59,8 @@ include_once('includes/head.php');
                                                 $prodId = $products['productId'];
                                                 $name = $products['productName'];
                                                 echo '
-                                                        <option value="' . $prodId . '">' . $name . '</option>
-                                                    ';
+                                                            <option value="' . $prodId . '">' . $name . '</option>
+                                                        ';
                                             }
                                             ?>
                                         </select>
@@ -127,7 +104,7 @@ include_once('includes/head.php');
                                 <div class="col-lg-3 col-sm-6 col-12">
                                     <div class="form-group">
                                         <label>Status</label>
-                                        <select class="select">
+                                        <select class="select" name="paymentStatus" id="paymentStatus">
                                             <option>Choose Status</option>
                                             <option>Completed</option>
                                             <option>Inprogress</option>
@@ -137,12 +114,11 @@ include_once('includes/head.php');
                                 <div class="col-lg-12">
                                     <div class="form-group">
                                         <label>Description</label>
-                                        <textarea class="form-control"></textarea>
+                                        <textarea id="description" name="description" class="form-control"></textarea>
                                     </div>
                                 </div>
                                 <div class="col-lg-12">
-                                    <a href="javascript:void(0);" class="btn btn-submit me-2">Submit</a>
-                                    <a href="purchaselist.html" class="btn btn-cancel">Cancel</a>
+                                    <button type="submit" class="btn btn-submit me-2">Add Sale</button>
                                 </div>
                             </div>
                         </div>
@@ -150,6 +126,61 @@ include_once('includes/head.php');
                 </form>
             </div>
         </div>
+
+        <!-- Add Customer Modal -->
+        <div class="modal fade" id="addCustomer" tabindex="-1" aria-labelledby="create" aria-hidden="true">
+            <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title text-center">Add Customer</h4>
+                        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="" class="addCustomerForm" method="POST">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-lg-6 col-sm-6 col-12">
+                                            <div class="form-group">
+                                                <label>Customer Name</label>
+                                                <input type="text" name="name" id="name">
+                                                <span class="text-danger m-1 nameError"></span>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 col-sm-6 col-12">
+                                            <div class="form-group">
+                                                <label>Email</label>
+                                                <input type="email" name="email" id="email">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 col-sm-6 col-12">
+                                            <div class="form-group">
+                                                <label>Phone</label>
+                                                <input type="number" name="phone" id="phone">
+                                                <span class="text-danger m-1 phoneError"></span>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 col-12">
+                                            <div class="form-group">
+                                                <label>Address</label>
+                                                <input type="text" name="address" id="address">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12">
+                                            <button type="submit" href="javascript:void(0);" class="btn btn-submit me-2">Save</button>
+                                            <a href="javascript:void(0);" class="btn btn-cancel">Cancel</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
 
 
@@ -180,6 +211,7 @@ include_once('includes/head.php');
     <script src="assets/js/script.js"></script>
 
     <script src="js/addsale.js"></script>
+    <!-- <script src="js/addCustomerToSale.js"></script> -->
 
 </body>
 

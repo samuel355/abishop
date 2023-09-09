@@ -1,6 +1,13 @@
-$(document).ready(function () {
+$(function () {
+  ("use strict");
+  var t,
+    o = "rtl" === $("html").attr("data-textdirection"),
+    n = $("#type-success"),
+    a = $(".btn-outline-danger");
+
   getCartItem();
   net_total();
+  getSaleCustomers();
 
   function net_total() {
     $.ajax({
@@ -11,6 +18,21 @@ $(document).ready(function () {
       success: function (data) {
         $(".moneyPart").html(data);
       },
+    });
+  }
+
+  //Display Sale Customers
+  function getSaleCustomers() {
+    $.ajax({
+      type: "GET",
+      url: "../php/getSaleCustomers.php",
+      data: {
+        getSaleCustomers: 1,
+      },
+
+      success: function (data) {
+        $('.saleCustomers').html(data);
+      }
     });
   }
 
@@ -64,7 +86,12 @@ $(document).ready(function () {
     $.ajax({
       type: "GET",
       url: "../php/increaseQty.php",
-      data: { productId: productId, quantity: quantity, subtotal: subtotal, price: price },
+      data: {
+        productId: productId,
+        quantity: quantity,
+        subtotal: subtotal,
+        price: price,
+      },
 
       success: function (data) {
         if (data === "success") {
@@ -85,7 +112,7 @@ $(document).ready(function () {
   $("body").delegate(".quantityDecrease", "click", function (event) {
     var productId = $(this).attr("productId");
     var qty = $(this).attr("productQuantity");
-    var price =$(this).attr("price")
+    var price = $(this).attr("price");
     var subtotal = $(this).attr("subtotal");
     var quantity = parseInt(qty);
 
@@ -100,7 +127,12 @@ $(document).ready(function () {
     $.ajax({
       type: "GET",
       url: "../php/decreaseQty.php",
-      data: { productId: productId, quantity: quantity, subtotal: subtotal, price: price },
+      data: {
+        productId: productId,
+        quantity: quantity,
+        subtotal: subtotal,
+        price: price,
+      },
 
       success: function (data) {
         if (data === "success") {
@@ -117,6 +149,36 @@ $(document).ready(function () {
     });
   });
 
+  //Select Customer to begin Sales
+  $("#selectSaleCustomer").on("change", function (e) {
+    var customerId = $(this).val();
+
+    if (customerId === "Search Customer") {
+      return toastr.error("Search and Customer", "Error", {
+        closeButton: !0,
+        tapToDismiss: !1,
+        rtl: o,
+      });
+    } else if (customerId === "") {
+      return toastr.error("customer ID is empty", "Error", {
+        closeButton: !0,
+        tapToDismiss: !1,
+        rtl: o,
+      });
+    } else {
+      $.ajax({
+        data: { customerId: customerId },
+        method: "GET",
+        url: "../php/displaySaleCustomer.php",
+        success: function (response) {
+          //getSaleCustomers();
+  
+          $(".saleCustomerInfo").html(response);
+        },
+      });
+    }
+  });
+
   //Display Cart Products in a Table
   function displayAddedProduct(productId) {
     $.ajax({
@@ -130,11 +192,6 @@ $(document).ready(function () {
       },
     });
   }
-
-  var t,
-    o = "rtl" === $("html").attr("data-textdirection"),
-    n = $("#type-success"),
-    a = $(".btn-outline-danger");
 
   //Add product to cart
   $(".selectSaleProduct").on("change", function (e) {
@@ -181,8 +238,57 @@ $(document).ready(function () {
     }
   });
 
+  //Add Customer to sale
+  $(".addCustomerForm").on("submit", function (e) {
+    e.preventDefault();
+
+    var name = $("#name").val(),
+      phone = $("#phone").val(),
+      email = $("#email").val(),
+      address = $("#address").val();
+
+    //Name
+    if (name === "") {
+      $(".nameError").text("Enter customer name");
+      return toastr.error("Enter customer name", "Error", {
+        closeButton: !0,
+        tapToDismiss: !1,
+        rtl: o,
+      });
+    } else if (name.length < 4) {
+      $(".nameError").text("Name too short");
+    } else {
+      $(".nameError").text("");
+    }
+
+    //Phone
+    if (phone === "") {
+      $(".phoneError").text("Enter customer phone number");
+      return toastr.error("Enter customer phone number", "Error", {
+        closeButton: !0,
+        tapToDismiss: !1,
+        rtl: o,
+      });
+    } else if (phone.length != 10) {
+      return $(".phoneError").text("phone number must be 10 digits");
+    } else {
+      $(".phoneError").text("");
+
+      $.ajax({
+        data: $(".addCustomerForm").serialize(),
+        method: "POST",
+        url: "../php/addCustomerOnSale.php",
+
+        success: function (response) {
+          $("#addCustomer").modal("toggle");
+          $(".saleCustomerInfo").html(response);
+        },
+      });
+    }
+  });
+
   //Add Category Start
-  $(".addProductForm").on("submit", function (e) {
+  $(".addSaleForm").on("submit", function (e) {
     e.preventDefault();
 
     var productName = $("#productName").val(),
@@ -191,6 +297,9 @@ $(document).ready(function () {
       price = $("#price").val(),
       description = $("#description").val(),
       numbers = /^[0-9]+$/;
+    
+    var data = $(".addSaleForm").serialize();
+    console.log(data);
 
     //Product Name
     // if (productName === "") {

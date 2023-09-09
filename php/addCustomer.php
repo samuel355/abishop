@@ -12,7 +12,7 @@ if (isset($_POST['name'])) {
     $shuffle = str_shuffle($generate);
     $customerId = str_replace(" ", "", $shuffle);
     $author = $_SESSION['uid'];
-    $now = date('Y-m-d') . " " . "At" . " " . date('h:i:s');
+    $now = date('d-m-Y') . " " . "At" . " " . date('h:i:s');
 
     $insert = mysqli_query($con, "INSERT INTO customers(customerId, customerName, phone, address, email, dateAdded, userId) VALUES ('{$customerId}', '{$name}', '{$phone}', '{$address}', '{$email}', '{$now}', '{$author}' )");
     if ($insert) {

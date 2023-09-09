@@ -44,13 +44,13 @@ if (isset($_GET['productId'])) {
                     <div class="increment-decrement">
                         <div class="input-groups">
                             <input type="button" value="-" productId = ' . $productId . ' productQuantity=" ' . $quantity . ' " class="button quantityDecrease" subtotal=" ' . $subTotal . ' " price=" ' . $price . ' ">
-                            <input type="text" value="' . $quantity . '" class="quantity-field">
+                            <input type="text" id="quantity" name="quantity" value="' . $quantity . '" class="quantity-field">
                             <input type="button" value="+" productId = ' . $productId . ' productQuantity=" ' . $quantity . ' " class="button quantityIncrease" subtotal=" ' . $subTotal . ' " price=" ' . $price . ' ">
                         </div>
                     </div>
                 </td>
-                <td class="productPrice">' . $price . '</td>
-                <td class="productSubTotal">' . $subTotal . '</td>
+                <td class="productPrice">' . number_format($price) . '</td>
+                <td class="productSubTotal">' . number_format($subTotal) . '</td>
                 <td>
                     <a><img class="deleteDelete" productId = ' . $productId . ' src="assets/img/icons/delete.svg" alt="svg"></a>
                 </td>
