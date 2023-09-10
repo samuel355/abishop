@@ -383,35 +383,82 @@ $(function () {
     var amountPaidRC = $("#amountPaidRC").val(),
       amountRemainingRC = $("#amountRemainingRC").val(),
       shortNoteRC = $("#shortNoteRC").val();
-      
+
     //For Credit
     var paymentDateFC = $("#paymentDate").val(),
-      shortNoteFC = $("#shortNoteFC");
+      shortNoteFC = $("#shortNoteFC").val();
 
     //Installments
     var initialPayment = $("#amountPaidI").val(),
       amountRemainingI = $("#amountRemainingI").val(),
-      nextPaymentDateI= $("#nextPaymentDateI").val(),
+      nextPaymentDateI = $("#nextPaymentDateI").val(),
       shortNoteI = $("#shortNoteI").val();
 
     if (paymentOptions === "Ready Cash") {
       amountPaid = amountPaidRC;
+      if (amountPaid === 0 || amountPaid === undefined || amountPaid === "") {
+        return $(".amountPaidRCError").text("Enter Amount Paid");
+      } else {
+        $(".amountPaidRCError").text("");
+      }
       amountRemaining = amountRemainingRC;
       shortNote = shortNoteRC;
-      paymentDate = 'today date';
-      nextPaymentDate = '';
+      paymentDate = "today date";
+      nextPaymentDate = "";
     } else if (paymentOptions === "For Credit") {
-      amountPaid = 0
+      paymentDate = paymentDateFC;
+
+      if (paymentDate === "") {
+        return $(".paymentDateFCError").text("Click to set payment Date");
+      } else {
+        $(".paymentDateFCError").text("");
+      }
+      amountPaid = 0;
       amountRemaining = totalAmount;
       shortNote = shortNoteFC;
-      paymentDate = paymentDateFC;
-      nextPaymentDate = '';
-    }else if(paymentOptions === "Installments"){
+      
+      nextPaymentDate = "";
+    } else if (paymentOptions === "Installments") {
       amountPaid = initialPayment;
+      if (amountPaid === 0 || amountPaid === undefined || amountPaid === "") {
+        return $(".initialPaymentError").text("Enter Initial Amount");
+      } else {
+        $(".initialPaymentError").text("");
+      }
+
       amountRemaining = amountRemainingI;
       nextPaymentDate = nextPaymentDateI;
       shortNote = shortNoteI;
-      paymentDate = 'today date'
+      paymentDate = "today date";
+
+      if (nextPaymentDate === "") {
+        return $(".nextPaymentDateError").text("Choose Next Payment Date");
+      } else {
+        $(".nextPaymentDateError").text("");
+      }
+    }
+
+    if (customerId === undefined || customerId === "") {
+      $(".customerSelectionError").text("Select Customer or Add customer");
+      $(".customerSelectionError").get(0).scrollIntoView();
+      return toastr.error("Select or Add Customer", "Error", {
+        closeButton: !0,
+        tapToDismiss: !1,
+        rtl: o,
+      });
+    } else {
+      $(".customerSelectionError").text("");
+    }
+
+    if (paymentOptions === "Choose Payment Option") {
+      $(".paymentOptionError").text("choose payment option");
+      return toastr.error("choose payment option", "Error", {
+        closeButton: !0,
+        tapToDismiss: !1,
+        rtl: o,
+      });
+    } else {
+      $(".paymentOptionError").text("");
     }
 
     var data = {
@@ -425,9 +472,8 @@ $(function () {
       amountRemaining,
       shortNote,
       paymentDate,
-      nextPaymentDate
+      nextPaymentDate,
     };
-    console.log(data);
 
     // $.ajax({
     //   data: $(".addProductForm").serialize(),

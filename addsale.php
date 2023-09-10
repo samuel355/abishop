@@ -40,6 +40,7 @@ include_once('includes/head.php');
                                                 </div>
                                             </div>
                                         </div>
+                                        <span class="text-danger customerSelectionError m-1"></span>
                                     </div>
                                 </div>
                                 <div class="saleCustomerInfo row">
@@ -103,6 +104,7 @@ include_once('includes/head.php');
                                             <div class="form-group amountPaid">
                                                 <label>Amount Paid</label>
                                                 <input type="number" name="amountPaidRC" id="amountPaidRC">
+                                                <span class="text-danger m-1 amountPaidRCError"></span>
                                             </div>
                                         </div>
                                         <div class="col-lg-3 col-sm-6 col-12">
@@ -133,6 +135,7 @@ include_once('includes/head.php');
                                                         <img src="assets/img/icons/calendars.svg" alt="img">
                                                     </a>
                                                 </div>
+                                                <span class="m-1 text-danger paymentDateFCError"></span>
                                             </div>
                                         </div>
                                         <div class="col-lg-6 col-sm-6 col-12">
@@ -151,13 +154,13 @@ include_once('includes/head.php');
                                             <div class="form-group amountPaid">
                                                 <label>Initial Payment</label>
                                                 <input type="number" name="amountPaidI" id="amountPaidI">
+                                                <span class="text-danger m-1 initialPaymentError"></span>
                                             </div>
                                         </div>
                                         <div class="col-lg-3 col-sm-6 col-12">
                                             <div class="form-group amountPaid">
                                                 <label>Amount Remaining</label>
                                                 <input type="text" disabled name="amountRemainingI" id="amountRemainingI">
-                                                <span class="text-danger m-1 amountRemainingIError"></span>
                                             </div>
                                         </div>
                                         <div class="col-lg-3 col-sm-6 col-12">
@@ -169,6 +172,7 @@ include_once('includes/head.php');
                                                         <img src="assets/img/icons/calendars.svg" alt="img">
                                                     </a>
                                                 </div>
+                                                <span class="text-danger nextPaymentDateError m-1"></span>
                                             </div>
                                         </div>
                                         <div class="col-lg-12 col-sm-6 col-12">
