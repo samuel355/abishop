@@ -83,7 +83,7 @@ include_once('includes/head.php');
                                     </div>
                                 </div>
                             </div>
-                            <div class="row">
+                            <div class="row" style="display: none;" id="paymentOptionsToChoose">
                                 <div class="col-lg-3 col-sm-6 col-12">
                                     <div class="form-group">
                                         <label>Payment Option</label>

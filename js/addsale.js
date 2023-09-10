@@ -9,6 +9,7 @@ $(function () {
   net_total();
   getSaleCustomers();
   paymentOptions();
+  showPaymentOptions();
 
   function net_total() {
     $.ajax({
@@ -18,6 +19,22 @@ $(function () {
 
       success: function (data) {
         $(".moneyPart").html(data);
+      },
+    });
+  }
+
+  function showPaymentOptions() {
+    $.ajax({
+      type: "GET",
+      data: { showOptions: 1 },
+      url: "../php/showPaymentOptions.php",
+
+      success: function (response) {
+        if (response === "success") {
+          return $("#paymentOptionsToChoose").css("display", "block");
+        } else {
+          return $("#paymentOptionsToChoose").css("display", "none");
+        }
       },
     });
   }
@@ -47,6 +64,7 @@ $(function () {
       success: function (data) {
         $(".tableProducts").html(data);
         net_total();
+        showPaymentOptions();
       },
     });
   }
@@ -65,6 +83,7 @@ $(function () {
         if (data === "success") {
           getCartItem();
           net_total();
+          showPaymentOptions();
         } else {
           return toastr.error(data, "Error", {
             closeButton: !0,
@@ -98,6 +117,7 @@ $(function () {
         if (data === "success") {
           getCartItem();
           net_total();
+          showPaymentOptions();
         } else {
           return toastr.error(data, "Error", {
             closeButton: !0,
@@ -139,6 +159,7 @@ $(function () {
         if (data === "success") {
           getCartItem();
           net_total();
+          showPaymentOptions();
         } else {
           return toastr.error(data, "Error", {
             closeButton: !0,
@@ -190,6 +211,7 @@ $(function () {
       success: function (data) {
         $(".tableProducts").html(data);
         net_total();
+        showPaymentOptions();
       },
     });
   }
@@ -416,7 +438,7 @@ $(function () {
       amountPaid = 0;
       amountRemaining = totalAmount;
       shortNote = shortNoteFC;
-      
+
       nextPaymentDate = "";
     } else if (paymentOptions === "Installments") {
       amountPaid = initialPayment;
@@ -475,31 +497,29 @@ $(function () {
       nextPaymentDate,
     };
 
-    // $.ajax({
-    //   data: $(".addProductForm").serialize(),
-    //   method: "POST",
-    //   url: "../php/addProduct.php",
+    $.ajax({
+      data: data,
+      method: "POST",
+      url: "../php/addCustomerSale.php",
 
-    //   success: function (response) {
-    //     console.log(response);
-    //     //$("#getCategories").html(response);
-    //     if (response === "success") {
-    //       $(".addProductForm")[0].reset();
-    //       window.alert("Product Added successfully");
-    //       location.href = "../productlist";
-    //       toastr.success("You have added product successfully", "Success", {
-    //         closeButton: !0,
-    //         tapToDismiss: !1,
-    //         rtl: o,
-    //       });
-    //     } else {
-    //       return toastr.error(response, "Error", {
-    //         closeButton: !0,
-    //         tapToDismiss: !1,
-    //         rtl: o,
-    //       });
-    //     }
-    //   },
-    // });
+      success: function (response) {
+        console.log(response);
+        if (response === "success") {
+          window.alert("Product Added successfully");
+          location.reload();
+          toastr.success("You have added sale successfully", "Success", {
+            closeButton: !0,
+            tapToDismiss: !1,
+            rtl: o,
+          });
+        } else {
+          return toastr.error(response, "Error", {
+            closeButton: !0,
+            tapToDismiss: !1,
+            rtl: o,
+          });
+        }
+      },
+    });
   });
 });
