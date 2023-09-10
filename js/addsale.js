@@ -505,8 +505,8 @@ $(function () {
       success: function (response) {
         console.log(response);
         if (response === "success") {
-          window.alert("Product Added successfully");
-          location.reload();
+          window.alert("Sales made successfully");
+          //location.reload();
           toastr.success("You have added sale successfully", "Success", {
             closeButton: !0,
             tapToDismiss: !1,
