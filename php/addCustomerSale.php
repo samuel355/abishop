@@ -3,9 +3,10 @@ session_start();
 include_once("config.php");
 
 if (isset($_POST['customerId'])) {
+    $invoiceId = mysqli_real_escape_string($con, $_POST['invoiceId']);
     $customerId = mysqli_real_escape_string($con, $_POST['customerId']);
     $customerEmail = mysqli_real_escape_string($con, $_POST['customerEmail']);
-    $customerAddress = mysqli_real_escape_string($con, $_POST['customerAddress']);
+    $customerAddress = mysqli_real_escape_string($con, $_POST['address']);
     $customerPhone = mysqli_real_escape_string($con, $_POST['customerPhone']);
     $paymentOption = mysqli_real_escape_string($con, $_POST['paymentOptions']);
 
@@ -19,11 +20,6 @@ if (isset($_POST['customerId'])) {
     $shortNote = mysqli_real_escape_string($con, $_POST['shortNote']);
 
     $userId = $_SESSION['uid'];
-
-    //generate invoiceId
-    $generate = rand(time(), 100000000) . substr('Invoice', 0, 5);
-    $shuffle = str_shuffle($generate);
-    $invoiceId = str_replace(" ", "", $shuffle);
 
     //select customer name using his id 
     $selectCustomer = mysqli_query($con, "SELECT * FROM customers WHERE customerId = '{$customerId}' ");
@@ -50,14 +46,12 @@ if (isset($_POST['customerId'])) {
                     $subTotal = $saleData['subtotal'];
                     $saleUserId = $userId;
 
-                    $insertSale = mysqli_query($con, "INSERT INTO sales(invoiceId, productId, productName, quantity, price, subtotal, customerId, userId, dateCreated) VALUES('{$invoiceId}', '{$productId}', '{$productName}', '{$quantity}', '{$price}', '{$subTotal}', '{$customerId}', '{$userId}', '{$now}')");
-                    if($insertSale){
-                        //clear cart details using userId
-                        $clearCart = mysqli_query($con, "DELETE FROM cart WHERE userId = '{$userId}' ");
-                        if($clearCart){
-                            echo 'success';
-                        }
-                    }
+                    $insertSale = mysqli_query($con, "INSERT INTO sales(invoiceId, productId, productName, quantity, price, subtotal, customerId, userId, dateCreated) VALUES('{$invoiceId}', '{$productId}', '{$productName}', '{$quantity}', '{$price}', '{$subTotal}', '{$customerId}', '{$userId}', '{$now}')");        
+                }
+                //clear cart details using userId
+                $clearCart = mysqli_query($con, "DELETE FROM cart WHERE userId = '{$userId}' ");
+                if ($clearCart) {
+                    echo 'success';
                 }
             }
         }

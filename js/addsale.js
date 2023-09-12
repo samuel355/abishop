@@ -383,7 +383,16 @@ $(function () {
     }
   });
 
-  //Add Category Start
+  //Print invoice
+  function printSaleInvoice(customerId, invoiceId){
+    $.ajax({
+      data: {customerId, invoiceId},
+      type: "GET",
+      url: "../saleinvoice",
+    })
+  }
+
+  //Add Sale 
   $(".addSaleForm").on("submit", function (e) {
     e.preventDefault();
 
@@ -394,6 +403,7 @@ $(function () {
       customerPhone = $("#phone").val(),
       totalAmount = $("#totalAmount").val(),
       paymentOptions = $("#paymentOptions").val();
+      var invoiceId = Date.now();
 
     var amountPaid;
     var amountRemaining;
@@ -484,6 +494,7 @@ $(function () {
     }
 
     var data = {
+      invoiceId,
       customerId,
       customerEmail,
       customerAddress,
@@ -505,8 +516,9 @@ $(function () {
       success: function (response) {
         console.log(response);
         if (response === "success") {
+          printSaleInvoice(customerId, invoiceId)
           window.alert("Sales made successfully");
-          //location.reload();
+          location.href = '../saleinvoice?customerId='+customerId+'&invoiceId='+invoiceId;
           toastr.success("You have added sale successfully", "Success", {
             closeButton: !0,
             tapToDismiss: !1,
