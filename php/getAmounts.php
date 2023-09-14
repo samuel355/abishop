@@ -13,19 +13,22 @@ if (isset($_GET['getAmounts'])) {
             $totalQuantity = $totalQuantity + $quantity;
             $totalAmount = $totalAmount + $subTotal;
         }
+        
         echo '
             <li>
                 <h4>Total Quantity</h4>
-                <h5 class="totalQuantity">'.number_format($totalQuantity).'</h5>
+                <h5 class="totalQuantity"> '.$totalQuantity.'</h5>
             </li>
             <li class="total">
                 <h4>Grand Total [GHS.]</h4>
-                <h5 class="totalAmount">Ghs '.number_format($totalAmount).'</h5>
-                <input type="hidden" name="totalAmount" id="totalAmount" value='.$totalAmount.' />
+                <h5 class="totalAmount">GHs '.$totalAmount.'</h5>
+                <input type="hidden" name="totalAmount" id="totalAmount" value=' . $totalAmount . ' />
             </li>
         ';
-    }else{
+        
+
+    } else {
         echo '';
     }
-
 }
+?>
