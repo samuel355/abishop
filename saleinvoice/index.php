@@ -179,7 +179,7 @@ if (isset($_GET['customerId']) && isset($_GET['invoiceId'])) {
                       </tr>
                       <tr class="tm_border_top tm_border_bottom tm_accent_bg">
                         <td class="tm_width_3 tm_border_top_0 tm_bold tm_f16 tm_white_color">Due (GHS)</td>
-                        <td class="tm_width_3 tm_border_top_0 tm_bold tm_f16 tm_white_color tm_text_right"> <?php echo number_format($amountRemaining) ?> </td>
+                        <td class="tm_width_3 tm_border_top_0 tm_bold tm_f16 tm_white_color tm_text_right"> <?php echo number_format($data['amountRemaining']) ?> </td>
                       </tr>
                     </tbody>
                   </table>

@@ -4,7 +4,7 @@
   requireLogin();
 
   if(!isSysAdminOrAdmin()){
-    header('Location: /addsale');
+    header('Location: /pos');
     exit();
   }
   if(isAdmin() || isSysAdmin()){

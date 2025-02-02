@@ -1,5 +1,5 @@
 RewriteEngine on
-ErrorDocument 404 http://www.abishop.me/erro-page
+ErrorDocument 404 http://www.abishop./
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME}\.php -f
 RewriteRule ^(.*)$ $1.php [NC,L]

@@ -21,7 +21,7 @@ if (isset($_GET['getAmounts'])) {
             </li>
             <li class="total">
                 <h4>Grand Total [GHS.]</h4>
-                <h5 class="totalAmount">GHs '.$totalAmount.'</h5>
+                <h5 class="totalAmount">GHs '.number_format($totalAmount).'</h5>
                 <input type="hidden" name="totalAmount" id="totalAmount" value=' . $totalAmount . ' />
             </li>
         ';

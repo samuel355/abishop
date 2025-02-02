@@ -83,7 +83,7 @@ $(function () {
         if (response === "success") {
           $(".addProductForm")[0].reset();
           window.alert("Product Added successfully");
-          location.href = '../productlist';
+          location.href = "../productlist";
           toastr.success("You have added product successfully", "Success", {
             closeButton: !0,
             tapToDismiss: !1,

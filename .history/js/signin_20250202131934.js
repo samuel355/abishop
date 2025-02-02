@@ -12,6 +12,9 @@ $(function () {
     if (email === "") {
       $(".emailError").text("Enter your email address");
       return toastr.error("Enter your email address", "Error", {
+        closeButton: !0,
+        tapToDismiss: !1,
+        rtl: o,
       });
     } else {
       $(".emailError").text("");
@@ -21,6 +24,9 @@ $(function () {
     if (password === "") {
       $(".passwordError").text("Enter your password");
       return toastr.error("Enter your password", "Error", {
+        closeButton: !0,
+        tapToDismiss: !1,
+        rtl: o,
       });
     } else {
       $(".passwordError").text("");
@@ -37,9 +43,15 @@ $(function () {
           $(".signinForm")[0].reset();
           window.location.href = "/";
           toastr.success("You have signed up successfully", "Success", {
+            closeButton: !0,
+            tapToDismiss: !1,
+            rtl: o,
           });
         } else {
           return toastr.error(response, "Error", {
+            closeButton: !0,
+            tapToDismiss: !1,
+            rtl: o,
           });
         }
       },

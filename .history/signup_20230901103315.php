@@ -23,7 +23,7 @@ include_once('includes/head.php'); ?>
                             <div class="form-login">
                                 <label>First Name</label>
                                 <div class="form-addons">
-                                    <input name="firstName" id="firstName" type="text" placeholder="Enter your first name">
+                                    <input name="firstName" id="firstName" type="text" placeholder="Enter your full name">
                                     <img src="assets/img/icons/users1.svg" alt="img">
                                     <span class="firstNameError text-danger m-1"></span>
                                 </div>
@@ -31,7 +31,7 @@ include_once('includes/head.php'); ?>
                             <div class="form-login">
                                 <label>Last Name</label>
                                 <div class="form-addons">
-                                    <input name="lastName" id="lastName" type="text" placeholder="Enter your last name">
+                                    <input name="lastName" id="lastName" type="text" placeholder="Enter your full name">
                                     <img src="assets/img/icons/users1.svg" alt="img">
                                     <span class="lastNameError text-danger m-1"></span>
                                 </div>

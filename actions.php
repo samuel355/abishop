@@ -6,19 +6,18 @@ if (isset($_POST['getCartItems'])) {
     if (mysqli_num_rows($query) > 0) {
 
         echo '
-
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>Product Name</th>
-                            <th>Quantity</th>
-                            <th>Unit Price(GHs) </th>
-                            <th>Sub Total(Ghs)</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-                    <tbody class="saleProduct">
-            ';
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Product Name</th>
+                        <th>Quantity</th>
+                        <th>Unit Price(GHs) </th>
+                        <th>Sub Total(Ghs)</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody class="saleProduct">
+        ';
     }
 
     $n = 0;
@@ -33,30 +32,30 @@ if (isset($_POST['getCartItems'])) {
         $subTotal = $price * $quantity;
 
         echo '
-                    <tr>
-                        <td>
-                            <a href="javascript:void(0);">' . $productName . '</a>
-                        </td>
-                        <td>
-                            <div class="increment-decrement">
-                                <div class="input-groups">
-                                    <input type="button" value="-" class="button quantityDecrease">
-                                    <input type="text" name="child" value="' . $quantity . '" class="quantity-field">
-                                    <input type="button" value="+" class="button quantityIncrease">
-                                </div>
-                            </div>
-                        </td>
-                        <td>' . $price . '</td>
-                        <td>' . $subTotal . '</td>
-                        <td>
-                            <a class="deleteDelete"><img src="assets/img/icons/delete.svg" alt="svg"></a>
-                        </td>
-                    </tr>
-                ';
+            <tr>
+                <td>
+                    <a href="javascript:void(0);">' . $productName . '</a>
+                </td>
+                <td>
+                    <div class="increment-decrement">
+                        <div class="input-groups">
+                            <input type="button" value="-" class="button quantityDecrease">
+                            <input type="text" name="child" value="' . $quantity . '" class="quantity-field">
+                            <input type="button" value="+" class="button quantityIncrease">
+                        </div>
+                    </div>
+                </td>
+                <td>' . $price . '</td>
+                <td>' . $subTotal . '</td>
+                <td>
+                    <a class="deleteDelete"><img src="assets/img/icons/delete.svg" alt="svg"></a>
+                </td>
+            </tr>
+        ';
     }
 
     echo '
-                </tbody>
-                </table>
-            ';
+        </tbody>
+        </table>
+    ';
 }

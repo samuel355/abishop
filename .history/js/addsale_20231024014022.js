@@ -335,19 +335,19 @@ $(function () {
         rtl: o,
       });
     } else if (paymentOption === "Ready Cash") {
-
+      console.log(totalAmount);
       $(".paymentOptionError").text("");
       $(".readyCash").css("display", "block");
       $(".forCredit").css("display", "none");
       $(".installments").css("display", "none");
     } else if (paymentOption === "For Credit") {
-
+      console.log(totalAmount);
       $(".paymentOptionError").text("");
       $(".forCredit").css("display", "block");
       $(".readyCash").css("display", "none");
       $(".installments").css("display", "none");
     } else if (paymentOption === "Installments") {
-
+      console.log(totalAmount);
       $(".paymentOptionError").text("");
       $(".installments").css("display", "block");
       $(".readyCash").css("display", "none");

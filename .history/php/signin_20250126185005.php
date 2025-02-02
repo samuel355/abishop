@@ -14,13 +14,13 @@ if (isset($_POST['email'])) {
         $hassPassword = md5($password);
         if ($dbPassword === $hassPassword) {
             $now = date('Y-m-d') . " " . "At" . " " . date('h:i:s');
+            echo 'success';
             $updateQuery = mysqli_query($con, "UPDATE users SET loginDate = '{$now}' WHERE email = '{$email}' ");
             $_SESSION['login'] = 'success';
             $_SESSION['uid'] = $data['userId'];
             $_SESSION['email'] = $data['email'];
             $_SESSION['name'] = $data['firstName'] . ' ' . $data['lastName'];
             $_SESSION['userType'] = $data['userType'];
-            echo 'success';
         } else {
             echo 'Password or Email is incorrect';
         }
